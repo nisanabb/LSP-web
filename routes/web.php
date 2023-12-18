@@ -25,6 +25,9 @@ Route::post('register/create', [\App\Http\Controllers\Auth\AuthController::class
     Route::post('/home', [\App\Http\Controllers\CalonMahasiswaController::class, 'store'])->name('calon_mahasiswa.store');
     Route::get('/home/status', [\App\Http\Controllers\CalonMahasiswaController::class, 'index'])->name('calon_mahasiswa.show');
     Route::get('calon_mahasiswa/index', [\App\Http\Controllers\CalonMahasiswaController::class, 'index'])->name('calon_mahasiswa.index');
+
+Route::get('/calon_mahasiswa/pdf', 'PdfController@generatePdf')->name('calon_mahasiswa.pdf');
+
     
 
 Route::middleware(['auth', 'checkadmin'])->group(function () {

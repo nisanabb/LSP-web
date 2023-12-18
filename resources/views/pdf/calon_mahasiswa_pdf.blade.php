@@ -3,7 +3,7 @@
 @section('content')
   <section id="list">
     <div class="container">
-      <h1>My Student List</h1>
+      <h1></h1>
       @if (count($students) > 0)
         <div class="table-responsive">
           <table class="table-striped table">
@@ -25,6 +25,7 @@
                 <th>Marital Status</th>
                 <th>Religion</th>
                 <th>Registration Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -46,21 +47,21 @@
                   <td>{{ $row->marital_status }}</td>
                   <td>{{ $row->religion }}</td>
                   <td>{{ $row->registration_status }}</td>
-                  <td> 
-                  <a href="{{ route('pdf.student_list') }}" target="_blank">Download PDF</a>
+                  <td>
+                    <a href="{{ url('admin/students/' . $row->id) }}" class="btn btn-warning" style='border-radius: 100px; width:140px; height: 36px;'>Edit</a>
+                    <form action='{{ route('admin.students.destroy', [$row->id]) }}' method='POST'>
+                      @csrf
+                      @method('DELETE')
+                      <button type='submit' class='btn btn-danger' style='border-radius: 100px; width:140px; height: 36px;'>Delete</button>
+                    </form>
+                </tr>
               @endforeach
             </tbody>
           </table>
         </div>
       @else
-        <p>No data in database.</p>
+      <p>No data in database.</p>
       @endif
     </div>
   </section>
 @endsection
-
-@if (session('success'))
-  <script>
-    alert(`{{ session('success') }}`)
-  </script>
-@endif

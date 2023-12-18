@@ -47,8 +47,9 @@
                   <td>{{ $row->religion }}</td>
                   <td>{{ $row->registration_status }}</td>
                   <td> 
-                  <a href="{{ route('pdf.student_list') }}" target="_blank">Download PDF</a>
-              @endforeach
+                  <a href="{{ route('calon_mahasiswa.pdf') }}" download="calon_mahasiswa.pdf">Download PDF</a>
+      
+            @endforeach
             </tbody>
           </table>
         </div>
